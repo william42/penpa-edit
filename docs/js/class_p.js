@@ -2056,9 +2056,9 @@ class Puzzle {
     }
 
     canvas_size_setting() {
+        this.ctx.changeSize(this.canvasx, this.canvasy);
         this.canvas.width = this.canvasx * this.resol;
         this.canvas.height = this.canvasy * this.resol;
-        this.ctx.changeSize(this.resol, this.resol);
         this.canvas.style.width = this.canvasx.toString() + "px";
         this.canvas.style.height = this.canvasy.toString() + "px";
         this.obj.style.width = this.canvas.style.width;
