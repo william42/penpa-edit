@@ -5,6 +5,8 @@ temp/
 tmp/
 .DS_Store
 notes/
+.parcel-cache/
+dist/
 
 *.log
 

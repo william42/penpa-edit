@@ -8,12 +8,6 @@
 (function(global) {
     'use strict';
 
-    // If we're in node require encoding-indexes and attach it to the global.
-    if (typeof module !== "undefined" && module.exports &&
-        !global["encoding-indexes"]) {
-        global["encoding-indexes"] =
-            require("./encoding-indexes.js")["encoding-indexes"];
-    }
 
     //
     // Utilities
