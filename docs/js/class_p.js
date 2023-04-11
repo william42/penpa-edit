@@ -54,7 +54,8 @@ class Puzzle {
         this.margin = 6;
 
         this.canvas = document.getElementById("canvas");
-        this.ctx = this.canvas.getContext("2d");
+        // this.ctx = this.canvas.getContext("2d");
+        this.ctx = evil_global_ctx;
         this.obj = document.getElementById("dvique");
 
         // Drawing position
@@ -2057,7 +2058,7 @@ class Puzzle {
     canvas_size_setting() {
         this.canvas.width = this.canvasx * this.resol;
         this.canvas.height = this.canvasy * this.resol;
-        this.ctx.scale(this.resol, this.resol);
+        this.ctx.changeSize(this.resol, this.resol);
         this.canvas.style.width = this.canvasx.toString() + "px";
         this.canvas.style.height = this.canvasy.toString() + "px";
         this.obj.style.width = this.canvas.style.width;

@@ -6,7 +6,7 @@ let isShiftKeyPressed = key => key === "Shift";
 let isAltKeyHeld = e => e.altKey;
 let isAltKeyPressed = key => key === "Alt";
 
-onload = function() {
+onload = async function() {
 
     // Detect mobile or Ipad beforing booting
     var ua = navigator.userAgent;
@@ -53,7 +53,7 @@ onload = function() {
         localStorageKey: "spectrum.homepage", // Any Spectrum with the same string will share selection, data stored locally in the browser
     });
 
-    boot();
+    await boot();
 
     document.addEventListener("beforeunload", function(eve) {
         eve.returnValue = "Move page.";

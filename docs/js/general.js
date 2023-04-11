@@ -1,8 +1,11 @@
-function boot() {
+async function boot() {
+    const Candle = await import("pzpr-canvas");
     var obj = document.getElementById("dvique");
-    var canvas = document.createElement("canvas");
+    var canvas = document.createElement("div");
     canvas.id = "canvas";
     obj.appendChild(canvas);
+    evil_global_ctx = await new Promise((resolve, reject) => Candle.start(canvas, 'svg', resolve));
+    console.log(evil_global_ctx);
     boot_parameters();
     init_genre_tags();
     set_answer_setting_table_to("and");
