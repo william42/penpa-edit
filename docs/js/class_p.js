@@ -2057,7 +2057,8 @@ class Puzzle {
     canvas_size_setting() {
         this.canvas.width = this.canvasx * this.resol;
         this.canvas.height = this.canvasy * this.resol;
-        this.ctx.scale(this.resol, this.resol);
+	this.ctx.changeSize(this.canvasx, this.canvasy);
+        //this.ctx.scale(this.resol, this.resol);
         this.canvas.style.width = this.canvasx.toString() + "px";
         this.canvas.style.height = this.canvasy.toString() + "px";
         this.obj.style.width = this.canvas.style.width;
@@ -2103,55 +2104,11 @@ class Puzzle {
         } else if (document.getElementById("nb_type2").checked) {
             var canvastext = resizedCanvas.toDataURL("image/jpeg");
         } else if (document.getElementById("nb_type3").checked) {
-            var svg_canvas = new C2S(this.canvasx, this.canvasy);
-            svg_canvas.text = function(text, x, y, width = 1e4) {
-                var fontsize = parseFloat(this.font.split("px")[0]);
-                this.strokeText(text, x, y + 0.28 * fontsize, width);
-                this.fillText(text, x, y + 0.28 * fontsize, width);
-            };
-            svg_canvas.arrow = function(startX, startY, endX, endY, controlPoints) {
-                var dx = endX - startX;
-                var dy = endY - startY;
-                var len = Math.sqrt(dx * dx + dy * dy);
-                var sin = dy / len;
-                var cos = dx / len;
-                var a = [];
-                a.push(0, 0);
-                for (var i = 0; i < controlPoints.length; i += 2) {
-                    var x = controlPoints[i];
-                    var y = controlPoints[i + 1];
-                    a.push(x < 0 ? len + x : x, y);
-                }
-                a.push(len, 0);
-                for (var i = controlPoints.length; i > 0; i -= 2) {
-                    var x = controlPoints[i - 2];
-                    var y = controlPoints[i - 1];
-                    a.push(x < 0 ? len + x : x, -y);
-                }
-                a.push(0, 0);
-                for (var i = 0; i < a.length; i += 2) {
-                    var x = a[i] * cos - a[i + 1] * sin + startX;
-                    var y = a[i] * sin + a[i + 1] * cos + startY;
-                    if (i === 0) this.moveTo(x, y);
-                    else this.lineTo(x, y);
-                }
-            };
+            
 
-            var old_canvas = this.ctx;
-            this.ctx = svg_canvas;
-            this.redraw(true); // Reflects SVG elements
-            this.ctx = old_canvas;
 
-            this.mode[this.mode.qa].edit_mode = mode; // retain original mode
-            if (document.getElementById("nb_margin2").checked) {
-                this.canvasx = cx;
-                this.canvasy = cy;
-                this.point_move(xl, yu, 0);
-                this.canvas_size_setting();
-            }
-            this.redraw(); // Back to original display
 
-            return svg_canvas.getSerializedSvg(true);
+            var canvastext = this.canvas.toBuffer();
         }
         this.mode[this.mode.qa].edit_mode = mode; // retain original mode
 
@@ -12441,6 +12398,7 @@ class Puzzle {
     }
 
     flushcanvas(svgcall) {
+	this.ctx.clear();
         if (svgcall) {
             this.ctx.fillStyle = Color.TRANSPARENTWHITE;
             this.ctx.fillRect(0, 0, this.canvasx, this.canvasy);

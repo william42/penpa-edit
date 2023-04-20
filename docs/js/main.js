@@ -6,7 +6,7 @@ let isShiftKeyPressed = key => key === "Shift";
 let isAltKeyHeld = e => e.altKey;
 let isAltKeyPressed = key => key === "Alt";
 
-onload = function() {
+onload = async function() {
 
     // Detect mobile or Ipad beforing booting
     var ua = navigator.userAgent;
@@ -53,7 +53,7 @@ onload = function() {
         localStorageKey: "spectrum.homepage", // Any Spectrum with the same string will share selection, data stored locally in the browser
     });
 
-    boot();
+    await boot();
 
     document.addEventListener("beforeunload", function(eve) {
         eve.returnValue = "Move page.";
@@ -66,13 +66,13 @@ onload = function() {
     canvas.addEventListener("mouseup", onUp, { passive: false });
     canvas.addEventListener("touchmove", onMove, { passive: false });
     canvas.addEventListener("mousemove", onMove, { passive: false });
-    canvas.addEventListener("mouseout", onOut, { passive: false });
+    canvas.addEventListener("mouseleave", onOut, { passive: false });
     canvas.addEventListener("contextmenu", onContextmenu, { passive: false });
     document.addEventListener("keydown", onKeyDown, { passive: false });
     document.addEventListener("keyup", onKeyUp, { passive: false });
 
     function onDown(e) {
-        if ((ondown_key === "mousedown" && e.button !== 1) || (ondown_key === "touchstart")) { // Ignore Middle button
+	if ((ondown_key === "mousedown" && e.button !== 1) || (ondown_key === "touchstart")) { // Ignore Middle button
             if (e.type === "mousedown") {
                 var event = e;
             } else {
@@ -102,6 +102,7 @@ onload = function() {
     }
 
     function onUp(e) {
+	console.log("wacslog:", e.type, e.target);
         if ((ondown_key === "mousedown" && e.button !== 1) || (ondown_key === "touchstart")) { // Ignore Middle button
             if (e.type === "mouseup") {
                 var event = e;
@@ -162,7 +163,8 @@ onload = function() {
         return;
     }
 
-    function onOut() {
+    function onOut(e) {
+	console.log("wacslog out:", e.type, e.target);
         pu.mouse_mode = "out";
         pu.mouse_click = 0;
         pu.mouseevent(0, 0, 0);
@@ -1099,8 +1101,11 @@ onload = function() {
                 }
             }
         }
+	
+	// if we click on an SVG element, that's probably the Candle canvas
+	const target_id =( e.target.namespaceURI === "http://www.w3.org/2000/svg") ? "canvas" : e.target.id;
 
-        switch (e.target.id) {
+        switch (target_id) {
             //canvas
             case "canvas":
                 document.getElementById("inputtext").blur(); // Remove focus from text box

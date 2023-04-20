@@ -1,8 +1,12 @@
-function boot() {
+async function boot() {
     var obj = document.getElementById("dvique");
-    var canvas = document.createElement("canvas");
+    var canvas = document.createElement("div");
     canvas.id = "canvas";
     obj.appendChild(canvas);
+    var Candle = (await import("candle")).default;
+    console.log("here");
+    var ctx = await new Promise((resolve, reject) => Candle.start(canvas, 'svg', resolve));
+    console.log("and here...");
     boot_parameters();
     init_genre_tags();
     set_answer_setting_table_to("and");
