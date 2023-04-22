@@ -12525,8 +12525,7 @@ class Puzzle {
                 this.ctx.lineTo(this.point[this.point[i].surround[j]].x, this.point[this.point[i].surround[j]].y);
             }
             this.ctx.closePath();
-            this.ctx.fill();
-            this.ctx.stroke();
+            this.ctx.shape();
         }
     }
 

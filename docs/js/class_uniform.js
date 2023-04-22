@@ -828,8 +828,7 @@ class Puzzle_truncated_square extends Puzzle {
                 this.ctx.lineTo(this.point[this.point[i].surround[j]].x, this.point[this.point[i].surround[j]].y);
             }
             this.ctx.closePath();
-            this.ctx.fill();
-            this.ctx.stroke();
+            this.ctx.shape();
         }
     }
 
@@ -842,8 +841,7 @@ class Puzzle_truncated_square extends Puzzle {
             ctx.lineTo(x - r * Math.cos(th * (Math.PI / 180)) * this.size, y - r * Math.sin(th * (Math.PI / 180)) * this.size);
         }
         ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
+        ctx.shape();
     }
 
     draw_direction(pu) {
@@ -1624,8 +1622,7 @@ class Puzzle_truncated_square extends Puzzle {
     draw_circle(ctx, x, y, r) {
         ctx.beginPath();
         ctx.arc(x, y, r * pu.size, 0, Math.PI * 2, false);
-        ctx.fill();
-        ctx.stroke();
+        ctx.shape();
     }
 
     draw_x(ctx, x, y, r) {
@@ -1888,8 +1885,7 @@ class Puzzle_truncated_square extends Puzzle {
                 ctx.lineTo(x + len * pu.size * Math.cos(th), y + len * pu.size * Math.sin(th));
                 th = this.rotate_theta((num - 1) * 90 + 315);
                 ctx.lineTo(x + len * Math.sqrt(2) * pu.size * Math.cos(th), y + len * Math.sqrt(2) * pu.size * Math.sin(th));
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
                 break;
                 //for square
             case 5:
@@ -2148,8 +2144,7 @@ class Puzzle_truncated_square extends Puzzle {
             th = this.rotate_theta((num - 1) * 60 - 150);
             ctx.beginPath();
             ctx.arrow(x - len1 * pu.size * Math.cos(th), y - len1 * pu.size * Math.sin(th), x + len2 * pu.size * Math.cos(th), y + len2 * pu.size * Math.sin(th), [0, w1 * pu.size, r1 * pu.size, w1 * pu.size, r2 * pu.size, w2 * pu.size, r3 * pu.size, w3 * pu.size]);
-            ctx.fill();
-            ctx.stroke();
+            ctx.shape();
         }
     }
 
@@ -2185,8 +2180,7 @@ class Puzzle_truncated_square extends Puzzle {
             th = this.rotate_theta((num - 1) * 45 - 180);
             ctx.beginPath();
             ctx.arrow(x - len1 * pu.size * Math.cos(th), y - len1 * pu.size * Math.sin(th), x + len2 * pu.size * Math.cos(th), y + len2 * pu.size * Math.sin(th), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-            ctx.fill();
-            ctx.stroke();
+            ctx.shape();
         }
     }
 
@@ -2230,8 +2224,7 @@ class Puzzle_truncated_square extends Puzzle {
             th = this.rotate_theta((num - 1) * 45 - 180);
             ctx.beginPath();
             ctx.arrow(x - len1 * pu.size * Math.cos(th), y - len1 * pu.size * Math.sin(th), x + len2 * pu.size * Math.cos(th), y + len2 * pu.size * Math.sin(th), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-            ctx.fill();
-            ctx.stroke();
+            ctx.shape();
         }
     }
 
@@ -2254,8 +2247,7 @@ class Puzzle_truncated_square extends Puzzle {
             th = this.rotate_theta((num - 1) * 90);
             ctx.beginPath();
             ctx.arrow(x - len1 * pu.size * Math.cos(th), y - len1 * pu.size * Math.sin(th), x + len2 * pu.size * Math.cos(th), y + len2 * pu.size * Math.sin(th), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-            ctx.fill();
-            ctx.stroke();
+            ctx.shape();
         }
     }
 
@@ -2274,8 +2266,7 @@ class Puzzle_truncated_square extends Puzzle {
                 th2 = this.rotate_theta(90 * i);
                 ctx.beginPath();
                 ctx.arrow(x + len1 * pu.size * Math.cos(th1 + Math.PI * t1) + 0.1 * pu.size * Math.cos(th2), y + len1 * pu.size * Math.sin(th1 + Math.PI * t1) + 0.1 * pu.size * Math.sin(th2), x + len2 * pu.size * Math.cos(th1 + Math.PI * t2) - 0.05 * pu.size * Math.cos(th2), y + len2 * pu.size * Math.sin(th1 + Math.PI * t2) - 0.05 * pu.size * Math.sin(th2), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
             }
         }
         for (var i = 4; i < 8; i++) {
@@ -2284,8 +2275,7 @@ class Puzzle_truncated_square extends Puzzle {
                 th2 = this.rotate_theta(90 * i);
                 ctx.beginPath();
                 ctx.arrow(x + len2 * pu.size * Math.cos(th1 + Math.PI * t2) - 0.1 * pu.size * Math.cos(th2), y + len2 * pu.size * Math.sin(th1 + Math.PI * t2) - 0.1 * pu.size * Math.sin(th2), x + len1 * pu.size * Math.cos(th1 + Math.PI * t1) + 0.05 * pu.size * Math.cos(th2), y + len1 * pu.size * Math.sin(th1 + Math.PI * t1) + 0.05 * pu.size * Math.sin(th2), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
             }
         }
     }
@@ -2308,8 +2298,7 @@ class Puzzle_truncated_square extends Puzzle {
                 ctx.lineTo(x + r1 * pu.size, y + r2 * pu.size);
                 ctx.lineTo(x - r1 * pu.size, y + r2 * pu.size);
                 ctx.lineTo(x - r1 * pu.size, y);
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
 
                 r1 = 0.2;
                 r2 = 0.4;
@@ -2344,8 +2333,7 @@ class Puzzle_truncated_square extends Puzzle {
                 ctx.lineTo(x - r2 * Math.cos(330 * (Math.PI / 180)) * pu.size, y - (r2 * Math.sin(330 * (Math.PI / 180)) - 0.1) * pu.size);
                 ctx.lineTo(x - r1 * Math.cos(90 * (Math.PI / 180)) * pu.size, y - (r1 * Math.sin(90 * (Math.PI / 180)) - 0.1) * pu.size);
                 ctx.lineTo(x - r2 * Math.cos(210 * (Math.PI / 180)) * pu.size, y - (r2 * Math.sin(210 * (Math.PI / 180)) - 0.1) * pu.size);
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
                 break;
             case 3: //anglers
                 ctx.setLineDash([]);
@@ -2475,8 +2463,7 @@ class Puzzle_truncated_square extends Puzzle {
             ctx.lineTo(x - r1 * Math.cos(th1 * (Math.PI / 180)) * pu.size, y - (r1 * Math.sin(th1 * (Math.PI / 180)) - 0) * pu.size);
             ctx.lineTo(x - r2 * Math.cos(th2 * (Math.PI / 180)) * pu.size, y - (r2 * Math.sin(th2 * (Math.PI / 180)) - 0) * pu.size);
         }
-        ctx.fill();
-        ctx.stroke();
+        ctx.shape();
     }
 
     draw_angleloop(ctx, num, x, y) {
@@ -5876,8 +5863,7 @@ class Puzzle_iso extends Puzzle_truncated_square {
                 ctx.lineTo(x + len * pu.size * Math.cos(th), y + len * pu.size * Math.sin(th));
                 th = this.rotate_theta((num - 1) * 60 + 345);
                 ctx.lineTo(x + len * Math.sqrt(2) * pu.size * Math.cos(th), y + len * Math.sqrt(2) * pu.size * Math.sin(th));
-                ctx.fill();
-                ctx.stroke();
+                ctx.shape();
                 break;
         }
     }
@@ -5888,8 +5874,7 @@ class Puzzle_iso extends Puzzle_truncated_square {
             th = this.rotate_theta((num - 1) * 60 - 150);
             ctx.beginPath();
             ctx.arrow(x - len1 * pu.size * Math.cos(th), y - len1 * pu.size * Math.sin(th), x + len2 * pu.size * Math.cos(th), y + len2 * pu.size * Math.sin(th), [0, w1 * pu.size, ri * pu.size, w1 * pu.size, ri * pu.size, w2 * pu.size]);
-            ctx.fill();
-            ctx.stroke();
+            ctx.shape();
         }
     }
 
